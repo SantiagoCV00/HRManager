@@ -1,12 +1,16 @@
 namespace HRManager
 {
+
+    //Emerson Granados Iniciando Proyecto
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Commit de prueba
+           
+======
+            // edison comit inicial
             // Add services to the container.
             builder.Services.AddRazorPages();
 
