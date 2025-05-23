@@ -6,6 +6,7 @@ namespace HRManager
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Commit de prueba
             // Add services to the container.
             builder.Services.AddRazorPages();
 
