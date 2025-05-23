@@ -7,7 +7,7 @@ namespace HRManager
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            // edison comit inicial
             // Add services to the container.
             builder.Services.AddRazorPages();
 
