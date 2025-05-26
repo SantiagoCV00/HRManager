@@ -1,0 +1,36 @@
+﻿@page
+@model HRManager.Pages.Beneficios.IndexModel
+@{
+	ViewData["Title"] = "Lista de Beneficios";
+}
+
+<h1>Lista de Beneficios</h1>
+
+<p>
+    <a asp-page="Create">Crear nuevo beneficio</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Costo para la empresa</th>
+            <th>Costo para el empleado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Beneficios)
+        {
+            <tr>
+                <td>@item.Descripcion</td>
+                <td>@item.CostoEmpresa.ToString("C")</td>
+                <td>@item.CostoEmpleado.ToString("C")</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.IdBeneficio">Editar</a> |
+                    <a asp-page="Delete" asp-route-id="@item.IdBeneficio">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
