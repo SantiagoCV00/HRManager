@@ -1,0 +1,28 @@
+﻿@page
+@model HRManager.Pages.Beneficios.EditModel
+@{
+	ViewData["Title"] = "Editar Beneficio";
+}
+
+<h1>Editar Beneficio</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Beneficio.IdBeneficio" />
+    <div class="form-group">
+        <label asp-for="Beneficio.Descripcion" class="control-label"></label>
+        <input asp-for="Beneficio.Descripcion" class="form-control" />
+        <span asp-validation-for="Beneficio.Descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Beneficio.CostoEmpresa" class="control-label"></label>
+        <input asp-for="Beneficio.CostoEmpresa" class="form-control" />
+        <span asp-validation-for="Beneficio.CostoEmpresa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Beneficio.CostoEmpleado" class="control-label"></label>
+        <input asp-for="Beneficio.CostoEmpleado" class="form-control" />
+        <span asp-validation-for="Beneficio.CostoEmpleado" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>
