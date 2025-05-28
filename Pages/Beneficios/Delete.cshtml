@@ -1,0 +1,24 @@
+﻿@page
+@model HRManager.Pages.Beneficios.DeleteModel
+@{
+	ViewData["Title"] = "Eliminar Beneficio";
+}
+
+<h1>Eliminar Beneficio</h1>
+
+<h3>¿Estás seguro que deseas eliminar este beneficio?</h3>
+<div>
+    <h4>@Model.Beneficio.Descripcion</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Costo Empresa</dt>
+        <dd class="col-sm-10">@Model.Beneficio.CostoEmpresa</dd>
+        <dt class="col-sm-2">Costo Empleado</dt>
+        <dd class="col-sm-10">@Model.Beneficio.CostoEmpleado</dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Beneficio.IdBeneficio" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
