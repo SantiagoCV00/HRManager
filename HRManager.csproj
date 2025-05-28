@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Account\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ApplicationDefinition Include="Migrations\HRManagerContextModelSnapshot.cs" />
   </ItemGroup>
 
