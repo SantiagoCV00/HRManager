@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using HRManager.Data;
-using global::HRManager.Data;
 
 namespace HRManager
 {
