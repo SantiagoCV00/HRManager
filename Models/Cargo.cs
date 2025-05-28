@@ -7,11 +7,11 @@ namespace HRManager.Models
         [Key]
         public int IdCargo { get; set; }
 
-        [Required]
+       
         public string TituloCargo { get; set; }
 
         public string Descripcion { get; set; }
 
-        public ICollection<Empleado> Empleados { get; set; }
+        public ICollection<Empleado>? Empleados { get; set; }
     }
 }

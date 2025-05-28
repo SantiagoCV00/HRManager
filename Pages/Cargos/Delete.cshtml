@@ -1,0 +1,32 @@
+﻿@page "{id:int}"
+@model HRManager.Pages.Cargos.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Cargo";
+}
+
+<h1>Eliminar Cargo</h1>
+
+<h3>¿Estás seguro de que deseas eliminar este cargo?</h3>
+<div class="alert alert-warning">
+    Esta acción no se puede deshacer.
+</div>
+
+<div>
+    <h4>Cargo</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Título:</dt>
+        <dd class="col-sm-10">@Model.Cargo.TituloCargo</dd>
+
+        <dt class="col-sm-2">Descripción:</dt>
+        <dd class="col-sm-10">@Model.Cargo.Descripcion</dd>
+
+        <dt class="col-sm-2">Empleados Asociados:</dt>
+        <dd class="col-sm-10">@Model.Cargo.Empleados?.Count ?? 0</dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Cargo.IdCargo" />
+        <button type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
