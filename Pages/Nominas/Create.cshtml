@@ -1,0 +1,42 @@
+﻿@page
+@model HRManager.Pages.Nominas.CreateModel
+@{
+    ViewData["Title"] = "Crear Nómina";
+}
+
+<h1>Crear Nómina</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Nomina.IdEmpleado" class="control-label"></label>
+        <select asp-for="Nomina.IdEmpleado" class="form-control" asp-items="Model.EmpleadoNombreApellido"></select>
+        <span asp-validation-for="Nomina.IdEmpleado" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nomina.PeriodoInicio" class="control-label"></label>
+        <input asp-for="Nomina.PeriodoInicio" class="form-control" type="date" />
+        <span asp-validation-for="Nomina.PeriodoInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nomina.PeriodoFin" class="control-label"></label>
+        <input asp-for="Nomina.PeriodoFin" class="form-control" type="date" />
+        <span asp-validation-for="Nomina.PeriodoFin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nomina.TotalPagado" class="control-label"></label>
+        <input asp-for="Nomina.TotalPagado" class="form-control" />
+        <span asp-validation-for="Nomina.TotalPagado" class="text-danger"></span>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary me-2">Crear</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
