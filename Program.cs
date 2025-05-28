@@ -24,7 +24,7 @@ namespace HRManager
 
             // ✅ Registro del contexto de base de datos
             builder.Services.AddDbContext<HRManagerContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("HRManagerDB"))
+                options.UseSqlServer(builder.Configuration.GetConnectionString("HRManager"))
             );
 
             var app = builder.Build();
