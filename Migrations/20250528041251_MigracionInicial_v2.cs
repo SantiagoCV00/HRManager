@@ -11,7 +11,7 @@ namespace HRManager.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Beneficios",
                 columns: table => new
                 {
@@ -52,7 +52,7 @@ namespace HRManager.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departamentos", x => x.IdDepartamento);
-                });
+                }); 
 
             migrationBuilder.CreateTable(
                 name: "Empleados",
@@ -143,7 +143,7 @@ namespace HRManager.Migrations
                 name: "Cargos");
 
             migrationBuilder.DropTable(
-                name: "Departamentos");
+                name: "Departamentos");*/
         }
     }
 }
