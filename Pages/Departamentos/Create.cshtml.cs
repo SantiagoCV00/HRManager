@@ -1,38 +1,38 @@
+using HRManager.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HRManager.Data; 
-using HRManager.Models; 
+using HRManager.Models;
 
-namespace HRManager.Pages.Departamentos 
+namespace HRManager.Pages.Departamentos
 {
     public class CreateModel : PageModel
     {
-        private readonly HRManagerContext _context; 
+        private readonly HRManagerContext _context;
 
-        public CreateModel(HRManagerContext context) 
+        public CreateModel(HRManagerContext context)
         {
             _context = context;
         }
+
+        [BindProperty]
+        public Departamento Departamento { get; set; } = default!;
 
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public Departamento Departamento { get; set; } = default!; 
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.Departamentos == null || Departamento == null) 
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Departamentos.Add(Departamento); 
+            _context.Departamentos.Add(Departamento);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("Index");
         }
     }
 }
