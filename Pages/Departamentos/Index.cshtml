@@ -1,4 +1,34 @@
 ﻿@page
 @model HRManager.Pages.Departamentos.IndexModel
 @{
+    ViewData["Title"] = "Lista de Departamentos";
 }
+
+<h1>Lista de Departamentos</h1>
+
+<p>
+    <a asp-page="Create">Crear nuevo departamento</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre del Departamento</th>
+            <th>Ubicación</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Departamentos)
+        {
+            <tr>
+                <td>@item.NombreDepartamento</td>
+                <td>@item.Ubicacion</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.IdDepartamento">Editar</a> |
+                    <a asp-page="Delete" asp-route-id="@item.IdDepartamento">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
