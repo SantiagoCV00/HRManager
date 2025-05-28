@@ -15,5 +15,7 @@ namespace HRManager.Data
         public DbSet<Cargo> Cargos { get; set; }
         public DbSet<Beneficio> Beneficios { get; set; }
         public DbSet<Nomina> Nominas { get; set; }
+
+        
     }
 }
