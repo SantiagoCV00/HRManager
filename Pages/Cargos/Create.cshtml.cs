@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using HRManager.Models;
 
-namespace HRManager.Pages.Departamentos
+namespace HRManager.Pages.Cargos
 {
     public class CreateModel : PageModel
     {
@@ -15,7 +15,7 @@ namespace HRManager.Pages.Departamentos
         }
 
         [BindProperty]
-        public Departamento Departamento { get; set; } = default!;
+        public Cargo Cargo { get; set; }
 
         public IActionResult OnGet()
         {
@@ -29,7 +29,7 @@ namespace HRManager.Pages.Departamentos
                 return Page();
             }
 
-            _context.Departamentos.Add(Departamento);
+            _context.Cargos.Add(Cargo);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");
