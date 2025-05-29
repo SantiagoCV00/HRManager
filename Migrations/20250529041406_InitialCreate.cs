@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRManager.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionInicial_v2 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Beneficios",
                 columns: table => new
                 {
@@ -52,7 +52,7 @@ namespace HRManager.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departamentos", x => x.IdDepartamento);
-                }); 
+                });
 
             migrationBuilder.CreateTable(
                 name: "Empleados",
@@ -66,10 +66,10 @@ namespace HRManager.Migrations
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaContratacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdDepartamento = table.Column<int>(type: "int", nullable: false),
-                    DepartamentoIdDepartamento = table.Column<int>(type: "int", nullable: false),
+                    DepartamentoIdDepartamento = table.Column<int>(type: "int", nullable: true),
                     Salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IdCargo = table.Column<int>(type: "int", nullable: false),
-                    CargoIdCargo = table.Column<int>(type: "int", nullable: false)
+                    CargoIdCargo = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,14 +78,12 @@ namespace HRManager.Migrations
                         name: "FK_Empleados_Cargos_CargoIdCargo",
                         column: x => x.CargoIdCargo,
                         principalTable: "Cargos",
-                        principalColumn: "IdCargo",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdCargo");
                     table.ForeignKey(
                         name: "FK_Empleados_Departamentos_DepartamentoIdDepartamento",
                         column: x => x.DepartamentoIdDepartamento,
                         principalTable: "Departamentos",
-                        principalColumn: "IdDepartamento",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdDepartamento");
                 });
 
             migrationBuilder.CreateTable(
@@ -143,7 +141,7 @@ namespace HRManager.Migrations
                 name: "Cargos");
 
             migrationBuilder.DropTable(
-                name: "Departamentos");*/
+                name: "Departamentos");
         }
     }
 }
