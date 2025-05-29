@@ -1,5 +1,6 @@
 using HRManager.Data;
 using HRManager.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Threading.Tasks; // Necesario para Task
 
 namespace HRManager.Pages.Empleados
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly HRManagerContext _context;
