@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20250528041251_MigracionInicial_v2.cs" />
-    <Compile Remove="Migrations\20250528041251_MigracionInicial_v2.Designer.cs" />
-    <Compile Remove="Migrations\20250528041809_InitialCreate.cs" />
-    <Compile Remove="Migrations\20250528041809_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -24,10 +17,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ApplicationDefinition Include="Migrations\HRManagerContextModelSnapshot.cs" />
   </ItemGroup>
 
 </Project>
