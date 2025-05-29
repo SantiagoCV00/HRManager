@@ -8,8 +8,8 @@ namespace HRManager.Models
         public int IdNomina { get; set; }
 
         [Required]
-        public int IdEmpleado { get; set; }
-        public Empleado Empleado { get; set; }
+        public int? IdEmpleado { get; set; }
+        public Empleado? Empleado { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PeriodoInicio { get; set; }
