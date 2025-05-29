@@ -34,8 +34,8 @@
                 <td>@item.Telefono</td>
                 <td>@item.FechaContratacion.ToShortDateString()</td>
                 <td>@item.Salario.ToString("C")</td>
-                <td>@item.Cargo.TituloCargo</td>
-                <td>@item.Departamento.NombreDepartamento</td>
+                <td>@item.Cargo?.TituloCargo</td>
+                <td>@item.Departamento?.NombreDepartamento</td>
                 <td>
                     <a asp-page="Edit" asp-route-id="@item.IdEmpleado">Editar</a> |
                     <a asp-page="Delete" asp-route-id="@item.IdEmpleado">Eliminar</a>

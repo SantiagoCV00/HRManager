@@ -35,4 +35,4 @@ namespace HRManager.Models
         public int IdCargo { get; set; }
         public Cargo? Cargo { get; set; }
     }
-}
+}   
