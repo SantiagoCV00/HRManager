@@ -11,7 +11,7 @@ namespace HRManager.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Beneficios",
                 columns: table => new
                 {
@@ -122,10 +122,10 @@ namespace HRManager.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Nominas_EmpleadoIdEmpleado",
                 table: "Nominas",
-                column: "EmpleadoIdEmpleado");
+                column: "EmpleadoIdEmpleado"); */
         }
 
-        /// <inheritdoc />
+            /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

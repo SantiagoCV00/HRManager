@@ -16,6 +16,8 @@ namespace HRManager.Data
         public DbSet<Beneficio> Beneficios { get; set; }
         public DbSet<Nomina> Nominas { get; set; }
 
-        
+        public DbSet<User> Users { get; set; } = default!;
+
+
     }
 }
