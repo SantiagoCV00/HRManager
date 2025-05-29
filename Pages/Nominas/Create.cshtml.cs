@@ -3,7 +3,7 @@ using HRManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering; 
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace HRManager.Pages.Nominas
 {
@@ -17,23 +17,24 @@ namespace HRManager.Pages.Nominas
         }
 
         [BindProperty]
-        public Nomina Nomina { get; set; } = new Nomina();
+        public Nomina Nomina { get; set; } = new Nomina(); 
 
-        
-        public SelectList EmpleadoNombreApellido { get; set; } = default!;
+        public SelectList EmpleadoList { get; set; } = default!; 
 
         public IActionResult OnGet()
         {
-           
-            EmpleadoNombreApellido = new SelectList(_context.Empleados, "IdEmpleado", "Nombre");
+       
+            EmpleadoList = new SelectList(_context.Empleados, "IdEmpleado", "Nombre"); 
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || _context.Nominas == null || Nomina == null)
             {
-                EmpleadoNombreApellido = new SelectList(_context.Empleados, "IdEmpleado", "Nombre");
+                
+                EmpleadoList = new SelectList(_context.Empleados, "IdEmpleado", "Nombre"); 
                 return Page();
             }
 
