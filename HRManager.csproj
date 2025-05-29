@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ApplicationDefinition Include="Migrations\HRManagerContextModelSnapshot.cs" />
-  </ItemGroup>
-
 </Project>

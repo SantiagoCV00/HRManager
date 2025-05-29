@@ -99,10 +99,10 @@ namespace HRManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CargoIdCargo")
+                    b.Property<int?>("CargoIdCargo")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartamentoIdDepartamento")
+                    b.Property<int?>("DepartamentoIdDepartamento")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -172,15 +172,11 @@ namespace HRManager.Migrations
                 {
                     b.HasOne("HRManager.Models.Cargo", "Cargo")
                         .WithMany("Empleados")
-                        .HasForeignKey("CargoIdCargo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CargoIdCargo");
 
                     b.HasOne("HRManager.Models.Departamento", "Departamento")
                         .WithMany("Empleados")
-                        .HasForeignKey("DepartamentoIdDepartamento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartamentoIdDepartamento");
 
                     b.Navigation("Cargo");
 

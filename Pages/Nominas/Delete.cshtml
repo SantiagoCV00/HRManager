@@ -1,0 +1,47 @@
+﻿@page
+@model HRManager.Pages.Nominas.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Nómina";
+}
+
+<h1>Eliminar Nómina</h1>
+
+<h3>¿Estás seguro de que quieres eliminar esto?</h3>
+<div>
+    <h4>Nómina</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nomina.Empleado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nomina.Empleado.Nombre) @Html.DisplayFor(model => model.Nomina.Empleado.Apellido)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nomina.PeriodoInicio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nomina.PeriodoInicio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nomina.PeriodoFin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nomina.PeriodoFin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nomina.TotalPagado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nomina.TotalPagado)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Nomina.IdNomina" />
+        <div class="mt-3">
+            <input type="submit" value="Eliminar" class="btn btn-danger me-2" />
+            <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
