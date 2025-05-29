@@ -24,7 +24,7 @@
         @foreach (var item in Model.Nominas)
         {
             <tr>
-                <td>@item.Empleado.Nombre @item.Empleado.Apellido</td>
+                <td>@item.Empleado?.Nombre @item.Empleado?.Apellido</td>
                 <td>@item.PeriodoInicio.ToShortDateString()</td>
                 <td>@item.PeriodoFin.ToShortDateString()</td>
                 <td>@item.TotalPagado.ToString("C")</td>
