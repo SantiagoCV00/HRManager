@@ -26,13 +26,13 @@ namespace HRManager.Models
 
         // FK
         public int IdDepartamento { get; set; }
-        public Departamento Departamento { get; set; }
+        public Departamento? Departamento { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal Salario { get; set; }
 
         // FK
         public int IdCargo { get; set; }
-        public Cargo Cargo { get; set; }
+        public Cargo? Cargo { get; set; }
     }
-}
+}   
