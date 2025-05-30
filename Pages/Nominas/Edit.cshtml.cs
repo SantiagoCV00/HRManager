@@ -24,22 +24,23 @@ namespace HRManager.Pages.Nominas
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
+            if(id == null || _context.Nominas == null)
+    {
                 return NotFound();
             }
 
-            Nomina = await _context.Nominas
+            var nomina = await _context.Nominas
                 .Include(n => n.Empleado) 
                 .FirstOrDefaultAsync(m => m.IdNomina == id);
 
-            if (Nomina == null)
+            if (nomina == null)
             {
                 return NotFound();
             }
+            Nomina = nomina;
 
-           
-            EmpleadoNombreApellido = new SelectList(_context.Empleados, "IdEmpleado", "Nombre", Nomina.IdEmpleado);
+
+            EmpleadoNombreApellido = new SelectList(_context.Empleados, "IdEmpleado", "Nombre");
 
             return Page();
         }

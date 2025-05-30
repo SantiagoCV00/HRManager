@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRManager.Migrations
 {
     [DbContext(typeof(HRManagerContext))]
-    [Migration("20250529064956_Users")]
-    partial class Users
+    [Migration("20250530044447_FinalDatabaseSetup")]
+    partial class FinalDatabaseSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,12 +102,6 @@ namespace HRManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CargoIdCargo")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DepartamentoIdDepartamento")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -134,9 +128,9 @@ namespace HRManager.Migrations
 
                     b.HasKey("IdEmpleado");
 
-                    b.HasIndex("CargoIdCargo");
+                    b.HasIndex("IdCargo");
 
-                    b.HasIndex("DepartamentoIdDepartamento");
+                    b.HasIndex("IdDepartamento");
 
                     b.ToTable("Empleados");
                 });
@@ -148,9 +142,6 @@ namespace HRManager.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNomina"));
-
-                    b.Property<int?>("EmpleadoIdEmpleado")
-                        .HasColumnType("int");
 
                     b.Property<int>("IdEmpleado")
                         .HasColumnType("int");
@@ -166,7 +157,7 @@ namespace HRManager.Migrations
 
                     b.HasKey("IdNomina");
 
-                    b.HasIndex("EmpleadoIdEmpleado");
+                    b.HasIndex("IdEmpleado");
 
                     b.ToTable("Nominas");
                 });
@@ -197,11 +188,15 @@ namespace HRManager.Migrations
                 {
                     b.HasOne("HRManager.Models.Cargo", "Cargo")
                         .WithMany("Empleados")
-                        .HasForeignKey("CargoIdCargo");
+                        .HasForeignKey("IdCargo")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("HRManager.Models.Departamento", "Departamento")
                         .WithMany("Empleados")
-                        .HasForeignKey("DepartamentoIdDepartamento");
+                        .HasForeignKey("IdDepartamento")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Cargo");
 
@@ -212,7 +207,9 @@ namespace HRManager.Migrations
                 {
                     b.HasOne("HRManager.Models.Empleado", "Empleado")
                         .WithMany()
-                        .HasForeignKey("EmpleadoIdEmpleado");
+                        .HasForeignKey("IdEmpleado")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Empleado");
                 });

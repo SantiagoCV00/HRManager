@@ -26,27 +26,25 @@ namespace HRManager.Pages.Empleados
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Empleados == null)
             {
                 return NotFound();
             }
 
- 
-            Empleado = await _context.Empleados
+            var empleado = await _context.Empleados
                 .Include(e => e.Cargo)
                 .Include(e => e.Departamento)
                 .FirstOrDefaultAsync(m => m.IdEmpleado == id);
 
-            if (Empleado == null)
+            if (empleado == null)
             {
                 return NotFound();
             }
+            Empleado = empleado;
 
 
-            CargoTitulo = new SelectList(_context.Cargos, "IdCargo", "TituloCargo", Empleado.IdCargo);
-
-            
-            DepartamentoNombre = new SelectList(_context.Departamentos, "IdDepartamento", "NombreDepartamento", Empleado.IdDepartamento);
+            CargoTitulo = new SelectList(_context.Cargos, "IdCargo", "TituloCargo");
+            DepartamentoNombre = new SelectList(_context.Departamentos, "IdDepartamento", "NombreDepartamento");
 
             return Page();
         }

@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRManager.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FinalDatabaseSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Beneficios",
                 columns: table => new
                 {
@@ -55,6 +55,20 @@ namespace HRManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Empleados",
                 columns: table => new
                 {
@@ -66,24 +80,24 @@ namespace HRManager.Migrations
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaContratacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdDepartamento = table.Column<int>(type: "int", nullable: false),
-                    DepartamentoIdDepartamento = table.Column<int>(type: "int", nullable: true),
                     Salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IdCargo = table.Column<int>(type: "int", nullable: false),
-                    CargoIdCargo = table.Column<int>(type: "int", nullable: true)
+                    IdCargo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Empleados", x => x.IdEmpleado);
                     table.ForeignKey(
-                        name: "FK_Empleados_Cargos_CargoIdCargo",
-                        column: x => x.CargoIdCargo,
+                        name: "FK_Empleados_Cargos_IdCargo",
+                        column: x => x.IdCargo,
                         principalTable: "Cargos",
-                        principalColumn: "IdCargo");
+                        principalColumn: "IdCargo",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Empleados_Departamentos_DepartamentoIdDepartamento",
-                        column: x => x.DepartamentoIdDepartamento,
+                        name: "FK_Empleados_Departamentos_IdDepartamento",
+                        column: x => x.IdDepartamento,
                         principalTable: "Departamentos",
-                        principalColumn: "IdDepartamento");
+                        principalColumn: "IdDepartamento",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +107,6 @@ namespace HRManager.Migrations
                     IdNomina = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdEmpleado = table.Column<int>(type: "int", nullable: false),
-                    EmpleadoIdEmpleado = table.Column<int>(type: "int", nullable: false),
                     PeriodoInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PeriodoFin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPagado = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -102,30 +115,30 @@ namespace HRManager.Migrations
                 {
                     table.PrimaryKey("PK_Nominas", x => x.IdNomina);
                     table.ForeignKey(
-                        name: "FK_Nominas_Empleados_EmpleadoIdEmpleado",
-                        column: x => x.EmpleadoIdEmpleado,
+                        name: "FK_Nominas_Empleados_IdEmpleado",
+                        column: x => x.IdEmpleado,
                         principalTable: "Empleados",
                         principalColumn: "IdEmpleado",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empleados_CargoIdCargo",
+                name: "IX_Empleados_IdCargo",
                 table: "Empleados",
-                column: "CargoIdCargo");
+                column: "IdCargo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empleados_DepartamentoIdDepartamento",
+                name: "IX_Empleados_IdDepartamento",
                 table: "Empleados",
-                column: "DepartamentoIdDepartamento");
+                column: "IdDepartamento");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nominas_EmpleadoIdEmpleado",
+                name: "IX_Nominas_IdEmpleado",
                 table: "Nominas",
-                column: "EmpleadoIdEmpleado"); */
+                column: "IdEmpleado");
         }
 
-            /// <inheritdoc />
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -133,6 +146,9 @@ namespace HRManager.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nominas");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Empleados");
