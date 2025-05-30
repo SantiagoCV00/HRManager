@@ -1,7 +1,7 @@
 ﻿@page
 @model HRManager.Pages.Departamentos.DeleteModel
 @{
-    ViewData["Title"] = "Eliminar Departamento"; // Changed title for clarity
+    ViewData["Title"] = "Eliminar Departamento"; 
 }
 
 <div class="container mt-4">
@@ -27,8 +27,7 @@
                         <dt class="col-sm-4 text-end">@Html.DisplayNameFor(model => model.Departamento.Ubicacion):</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Departamento.Ubicacion)</dd>
 
-                        @* You might want to add associated employees count here if applicable, similar to Cargos delete *@
-                        @* <dt class="col-sm-4 text-end">Empleados Asociados:</dt>
+                       <dt class="col-sm-4 text-end">Empleados Asociados:</dt>
                         <dd class="col-sm-8">
                             @if (Model.Departamento.Empleados != null && Model.Departamento.Empleados.Any())
                             {
@@ -42,7 +41,7 @@
                                     <i class="bi bi-person-slash me-1"></i> Ninguno
                                 </span>
                             }
-                        </dd> *@
+                        </dd> 
                     </dl>
 
                     <form method="post">

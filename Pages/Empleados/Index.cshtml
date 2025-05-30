@@ -39,7 +39,7 @@
                     @foreach (var item in Model.Empleados)
                     {
                         <tr>
-                            <td>@item.Nombre @item.Apellido</td> @* Combine Nombre and Apellido *@
+                            <td>@item.Nombre @item.Apellido</td> 
                             <td>@item.Email</td>
                             <td>@item.Telefono</td>
                             <td>@item.FechaContratacion.ToShortDateString()</td>
@@ -47,7 +47,6 @@
                             <td>@item.Cargo?.TituloCargo</td>
                             <td>@item.Departamento?.NombreDepartamento</td>
                             <td class="text-center text-nowrap">
-                                @* Use text-nowrap to keep buttons together *@
                                 <a asp-page="Edit" asp-route-id="@item.IdEmpleado" class="btn btn-sm btn-success me-1" title="Editar Empleado">
                                     Editar
                                 </a>
