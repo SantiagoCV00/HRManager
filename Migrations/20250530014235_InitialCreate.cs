@@ -11,7 +11,7 @@ namespace HRManager.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Beneficios",
                 columns: table => new
                 {
@@ -55,6 +55,20 @@ namespace HRManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Empleados",
                 columns: table => new
                 {
@@ -93,7 +107,7 @@ namespace HRManager.Migrations
                     IdNomina = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdEmpleado = table.Column<int>(type: "int", nullable: false),
-                    EmpleadoIdEmpleado = table.Column<int>(type: "int", nullable: false),
+                    EmpleadoIdEmpleado = table.Column<int>(type: "int", nullable: true),
                     PeriodoInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PeriodoFin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPagado = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -105,8 +119,7 @@ namespace HRManager.Migrations
                         name: "FK_Nominas_Empleados_EmpleadoIdEmpleado",
                         column: x => x.EmpleadoIdEmpleado,
                         principalTable: "Empleados",
-                        principalColumn: "IdEmpleado",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdEmpleado");
                 });
 
             migrationBuilder.CreateIndex(
@@ -122,10 +135,10 @@ namespace HRManager.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Nominas_EmpleadoIdEmpleado",
                 table: "Nominas",
-                column: "EmpleadoIdEmpleado"); */
+                column: "EmpleadoIdEmpleado");
         }
 
-            /// <inheritdoc />
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -133,6 +146,9 @@ namespace HRManager.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nominas");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Empleados");

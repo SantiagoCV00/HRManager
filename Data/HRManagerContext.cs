@@ -1,6 +1,8 @@
 ﻿using HRManager.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 namespace HRManager.Data
 {
     public class HRManagerContext : DbContext
@@ -17,6 +19,8 @@ namespace HRManager.Data
         public DbSet<Nomina> Nominas { get; set; }
 
         public DbSet<User> Users { get; set; } = default!;
+
+
 
 
     }

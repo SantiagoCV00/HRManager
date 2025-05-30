@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRManager.Migrations
 {
     [DbContext(typeof(HRManagerContext))]
-    [Migration("20250529064956_Users")]
-    partial class Users
+    [Migration("20250530014235_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
