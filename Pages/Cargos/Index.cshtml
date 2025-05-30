@@ -5,44 +5,72 @@
     ViewData["Title"] = "Lista de Cargos";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">@ViewData["Title"]</h1>
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill me-2"></i>Crear Nuevo Cargo
+        </a>
+    </div>
 
-<p>
-    <a asp-page="Create" class="btn btn-primary">Crear Nuevo Cargo</a>
-</p>
+    @if (Model.Cargos == null || !Model.Cargos.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            No hay cargos registrados. ¡Crea uno nuevo para empezar!
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover shadow-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Cargos[0].IdCargo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cargos[0].TituloCargo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cargos[0].Descripcion)</th>
+                        <th class="text-center">Empleados Asignados</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Cargos)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.IdCargo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TituloCargo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                            <td class="text-center">
+                                @if (item.Empleados != null && item.Empleados.Any())
+                                {
+                                    <span class="badge bg-success rounded-pill px-3 py-2">
+                                        <i class="bi bi-people-fill me-1"></i>@item.Empleados.Count() Empleados
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary rounded-pill px-3 py-2">
+                                        <i class="bi bi-person-slash me-1"></i>Sin empleados
+                                    </span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a asp-page="./Edit" asp-route-id="@item.IdCargo" class="btn btn-sm btn-success me-1" title="Editar Cargo">
+                                    Editar
+                                </a>
+                                <a asp-page="./Delete" asp-route-id="@item.IdCargo" class="btn btn-sm btn-danger" title="Eliminar Cargo">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
-<table class="table table-striped table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Cargos[0].IdCargo)</th>
-            <th>@Html.DisplayNameFor(model => model.Cargos[0].TituloCargo)</th>
-            <th>@Html.DisplayNameFor(model => model.Cargos[0].Descripcion)</th>
-            <th>Empleados</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Cargos)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.IdCargo)</td>
-                <td>@Html.DisplayFor(modelItem => item.TituloCargo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                <td>
-                    @if (item.Empleados != null && item.Empleados.Any())
-                    {
-                        <span class="badge bg-primary">@item.Empleados.Count() Empleados</span>
-                    }
-                    else
-                    {
-                        <span class="text-muted">Sin empleados</span>
-                    }
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.IdCargo" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-page="./Delete" asp-route-id="@item.IdCargo" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}

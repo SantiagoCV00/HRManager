@@ -4,35 +4,60 @@
     ViewData["Title"] = "Lista de Nóminas";
 }
 
-<h1>Lista de Nóminas</h1>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">@ViewData["Title"]</h1>
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-file-earmark-plus-fill me-2"></i>Crear Nueva Nómina
+        </a>
+    </div>
 
-<p>
-    <a asp-page="Create">Crear nueva nómina</a>
-</p>
+    @if (Model.Nominas == null || !Model.Nominas.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            No hay nóminas registradas. ¡Crea una nueva para empezar!
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover shadow-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Empleado</th>
+                        <th>Período de Inicio</th>
+                        <th>Período de Fin</th>
+                        <th>Total Pagado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Nominas)
+                    {
+                        <tr>
+                            <td>@item.Empleado?.Nombre @item.Empleado?.Apellido</td>
+                            <td>@item.PeriodoInicio.ToShortDateString()</td>
+                            <td>@item.PeriodoFin.ToShortDateString()</td>
+                            <td>@item.TotalPagado.ToString("C")</td>
+                            <td class="text-center text-nowrap">
+                                @* Use text-nowrap to keep buttons together *@
+                                <a asp-page="Edit" asp-route-id="@item.IdNomina" class="btn btn-sm btn-success me-1" title="Editar Nómina">
+                                    Editar
+                                </a>
+                                <a asp-page="Delete" asp-route-id="@item.IdNomina" class="btn btn-sm btn-danger" title="Eliminar Nómina">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Empleado</th>
-            <th>Período de Inicio</th>
-            <th>Período de Fin</th>
-            <th>Total Pagado</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Nominas)
-        {
-            <tr>
-                <td>@item.Empleado?.Nombre @item.Empleado?.Apellido</td>
-                <td>@item.PeriodoInicio.ToShortDateString()</td>
-                <td>@item.PeriodoFin.ToShortDateString()</td>
-                <td>@item.TotalPagado.ToString("C")</td>
-                <td>
-                    <a asp-page="Edit" asp-route-id="@item.IdNomina">Editar</a> |
-                    <a asp-page="Delete" asp-route-id="@item.IdNomina">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
