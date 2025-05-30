@@ -1,10 +1,27 @@
-﻿@if(User.Identity.IsAuthenticated)
+﻿@using Microsoft.AspNetCore.Identity
+
+@if (User.Identity.IsAuthenticated)
 {
-	<form method="post" class="form-inline" asp-page="/Account/Logout">
-		Welcome @User.Identity.Name
-		<button type="submit" class"ml-2 btn btn-link">Logout</button>
-	</form>
-}else {
-	<a class="btn btn-link" asp-page="/Account/Login">Login</a>
-	<a class="btn btn-link" asp-page="/Account/Register">Register</a>
+    <div class="d-flex align-items-center gap-2">
+        <span class="text-white fw-semibold">
+            <i class="bi bi-person-circle me-1"></i> @User.Identity.Name
+        </span>
+        <form method="post" asp-page="/Account/Logout" class="d-inline">
+            <button type="submit" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-box-arrow-right me-1"></i> Salir
+            </button>
+        </form>
+    </div>
 }
+else
+{
+    <div class="d-flex gap-2">
+        <a asp-page="/Account/Login" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar sesión
+        </a>
+        <a asp-page="/Account/Register" class="btn btn-light btn-sm">
+            <i class="bi bi-person-plus-fill me-1"></i> Registrarse
+        </a>
+    </div>
+}
+
