@@ -2,9 +2,9 @@ using HRManager.Data;
 using HRManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering; 
-using Microsoft.EntityFrameworkCore; 
-using System.Threading.Tasks; 
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace HRManager.Pages.Empleados
 {
@@ -26,27 +26,25 @@ namespace HRManager.Pages.Empleados
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Empleados == null)
             {
                 return NotFound();
             }
 
- 
-            Empleado = await _context.Empleados
+            var empleado = await _context.Empleados
                 .Include(e => e.Cargo)
                 .Include(e => e.Departamento)
                 .FirstOrDefaultAsync(m => m.IdEmpleado == id);
 
-            if (Empleado == null)
+            if (empleado == null)
             {
                 return NotFound();
             }
+            Empleado = empleado;
 
 
-            CargoTitulo = new SelectList(_context.Cargos, "IdCargo", "TituloCargo", Empleado.IdCargo);
-
-            
-            DepartamentoNombre = new SelectList(_context.Departamentos, "IdDepartamento", "NombreDepartamento", Empleado.IdDepartamento);
+            CargoTitulo = new SelectList(_context.Cargos, "IdCargo", "TituloCargo");
+            DepartamentoNombre = new SelectList(_context.Departamentos, "IdDepartamento", "NombreDepartamento");
 
             return Page();
         }
@@ -55,7 +53,7 @@ namespace HRManager.Pages.Empleados
         {
             if (!ModelState.IsValid)
             {
-          
+
                 CargoTitulo = new SelectList(_context.Cargos, "IdCargo", "TituloCargo", Empleado.IdCargo);
                 DepartamentoNombre = new SelectList(_context.Departamentos, "IdDepartamento", "NombreDepartamento", Empleado.IdDepartamento);
                 return Page();

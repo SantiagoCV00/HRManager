@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRManager.Migrations
 {
     [DbContext(typeof(HRManagerContext))]
-    [Migration("20250528041809_InitialCreate")]
+    [Migration("20250530052016_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -102,12 +102,6 @@ namespace HRManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CargoIdCargo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartamentoIdDepartamento")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -134,9 +128,9 @@ namespace HRManager.Migrations
 
                     b.HasKey("IdEmpleado");
 
-                    b.HasIndex("CargoIdCargo");
+                    b.HasIndex("IdCargo");
 
-                    b.HasIndex("DepartamentoIdDepartamento");
+                    b.HasIndex("IdDepartamento");
 
                     b.ToTable("Empleados");
                 });
@@ -148,9 +142,6 @@ namespace HRManager.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNomina"));
-
-                    b.Property<int>("EmpleadoIdEmpleado")
-                        .HasColumnType("int");
 
                     b.Property<int>("IdEmpleado")
                         .HasColumnType("int");
@@ -166,23 +157,45 @@ namespace HRManager.Migrations
 
                     b.HasKey("IdNomina");
 
-                    b.HasIndex("EmpleadoIdEmpleado");
+                    b.HasIndex("IdEmpleado");
 
                     b.ToTable("Nominas");
+                });
+
+            modelBuilder.Entity("HRManager.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("HRManager.Models.Empleado", b =>
                 {
                     b.HasOne("HRManager.Models.Cargo", "Cargo")
                         .WithMany("Empleados")
-                        .HasForeignKey("CargoIdCargo")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdCargo")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("HRManager.Models.Departamento", "Departamento")
                         .WithMany("Empleados")
-                        .HasForeignKey("DepartamentoIdDepartamento")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdDepartamento")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cargo");
@@ -194,8 +207,8 @@ namespace HRManager.Migrations
                 {
                     b.HasOne("HRManager.Models.Empleado", "Empleado")
                         .WithMany()
-                        .HasForeignKey("EmpleadoIdEmpleado")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdEmpleado")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Empleado");

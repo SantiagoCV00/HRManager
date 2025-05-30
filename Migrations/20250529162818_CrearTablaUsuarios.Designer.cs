@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRManager.Migrations
 {
     [DbContext(typeof(HRManagerContext))]
-    [Migration("20250528065705_Cambios2")]
-    partial class Cambios2
+    [Migration("20250529162818_CrearTablaUsuarios")]
+    partial class CrearTablaUsuarios
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,7 +149,7 @@ namespace HRManager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNomina"));
 
-                    b.Property<int>("EmpleadoIdEmpleado")
+                    b.Property<int?>("EmpleadoIdEmpleado")
                         .HasColumnType("int");
 
                     b.Property<int>("IdEmpleado")
@@ -171,6 +171,28 @@ namespace HRManager.Migrations
                     b.ToTable("Nominas");
                 });
 
+            modelBuilder.Entity("HRManager.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("HRManager.Models.Empleado", b =>
                 {
                     b.HasOne("HRManager.Models.Cargo", "Cargo")
@@ -190,9 +212,7 @@ namespace HRManager.Migrations
                 {
                     b.HasOne("HRManager.Models.Empleado", "Empleado")
                         .WithMany()
-                        .HasForeignKey("EmpleadoIdEmpleado")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmpleadoIdEmpleado");
 
                     b.Navigation("Empleado");
                 });

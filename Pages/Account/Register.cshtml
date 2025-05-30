@@ -1,0 +1,45 @@
+﻿@page
+@model HRManager.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Registro de Usuario";
+}
+
+<h1>Registro de Usuario</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+            {
+                <div class="alert alert-success">@Model.SuccessMessage</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label asp-for="RegisterData.Email" class="control-label"></label> <input asp-for="RegisterData.Email" class="form-control" type="email" />
+                <span asp-validation-for="RegisterData.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegisterData.Password" class="control-label"></label>
+                <input asp-for="RegisterData.Password" class="form-control" type="password" />
+                <span asp-validation-for="RegisterData.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

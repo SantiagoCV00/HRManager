@@ -1,27 +1,46 @@
 ﻿@page
 @model HRManager.Pages.Beneficios.CreateModel
 @{
-	ViewData["Title"] = "Crear Beneficio";
+    ViewData["Title"] = "Crear Beneficio";
 }
 
-<h1>Crear Beneficio</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Crear Nuevo Beneficio</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="Beneficio.Descripcion" class="form-label"></label>
+                            <input asp-for="Beneficio.Descripcion" class="form-control" />
+                            <span asp-validation-for="Beneficio.Descripcion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Beneficio.CostoEmpresa" class="form-label"></label>
+                            <input asp-for="Beneficio.CostoEmpresa" class="form-control" />
+                            <span asp-validation-for="Beneficio.CostoEmpresa" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="Beneficio.CostoEmpleado" class="form-label"></label>
+                            <input asp-for="Beneficio.CostoEmpleado" class="form-control" />
+                            <span asp-validation-for="Beneficio.CostoEmpleado" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="submit" class="btn btn-success me-md-2">Crear</button>
+                            <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="Beneficio.Descripcion" class="control-label"></label>
-        <input asp-for="Beneficio.Descripcion" class="form-control" />
-        <span asp-validation-for="Beneficio.Descripcion" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Beneficio.CostoEmpresa" class="control-label"></label>
-        <input asp-for="Beneficio.CostoEmpresa" class="form-control" />
-        <span asp-validation-for="Beneficio.CostoEmpresa" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Beneficio.CostoEmpleado" class="control-label"></label>
-        <input asp-for="Beneficio.CostoEmpleado" class="form-control" />
-        <span asp-validation-for="Beneficio.CostoEmpleado" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Crear</button>
-    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

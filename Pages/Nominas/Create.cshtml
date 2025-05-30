@@ -4,45 +4,55 @@
     ViewData["Title"] = "Crear Nómina";
 }
 
-<h1>Crear Nómina</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="mb-0">Crear Nueva Nómina</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4" role="alert"></div>
 
-<p>Crear un nuevo registro de nómina.</p>
+                        <div class="mb-3"> Using mb-3 for spacing for select elements 
+                            <label asp-for="Nomina.IdEmpleado" class="form-label fw-bold">Empleado</label>
+                            <select asp-for="Nomina.IdEmpleado" class="form-select" asp-items="Model.EmpleadoList">
+                                <option value="">-- Seleccione un Empleado --</option>
+                            </select>
+                            <span asp-validation-for="Nomina.IdEmpleado" class="text-danger mt-1"></span>
+                        </div>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Nomina.PeriodoInicio" class="form-control" type="date" placeholder="Período de Inicio" />
+                            <label asp-for="Nomina.PeriodoInicio">Período de Inicio</label>
+                            <span asp-validation-for="Nomina.PeriodoInicio" class="text-danger mt-1"></span>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="Nomina.IdEmpleado" class="control-label"></label>
-                <select asp-for="Nomina.IdEmpleado" class="form-control" asp-items="Model.EmpleadoList"></select>
-                <span asp-validation-for="Nomina.IdEmpleado" class="text-danger"></span>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Nomina.PeriodoFin" class="form-control" type="date" placeholder="Período de Fin" />
+                            <label asp-for="Nomina.PeriodoFin">Período de Fin</label>
+                            <span asp-validation-for="Nomina.PeriodoFin" class="text-danger mt-1"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="Nomina.TotalPagado" class="form-control" placeholder="Total Pagado" />
+                            <label asp-for="Nomina.TotalPagado">Total Pagado</label>
+                            <span asp-validation-for="Nomina.TotalPagado" class="text-danger mt-1"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary btn-lg" title="Crear nueva nómina">
+                                <i class="bi bi-plus-circle-fill me-2"></i>Crear
+                            </button>
+                            <a asp-page="./Index" class="btn btn-secondary btn-lg" title="Cancelar y volver a la lista">
+                                <i class="bi bi-x-circle me-2"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Nomina.PeriodoInicio" class="control-label"></label>
-                <input asp-for="Nomina.PeriodoInicio" class="form-control" type="date" />
-                <span asp-validation-for="Nomina.PeriodoInicio" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Nomina.PeriodoFin" class="control-label"></label>
-                <input asp-for="Nomina.PeriodoFin" class="form-control" type="date" />
-                <span asp-validation-for="Nomina.PeriodoFin" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Nomina.TotalPagado" class="control-label"></label>
-                <input asp-for="Nomina.TotalPagado" class="form-control" />
-                <span asp-validation-for="Nomina.TotalPagado" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mt-3">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-                <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -50,4 +60,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 }
