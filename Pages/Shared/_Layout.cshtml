@@ -1,50 +1,115 @@
-﻿    <!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HRManager</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - RECURSOS HUMANOS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HRManager.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8f9fa; 
+            color: #212529; 
+        }
+        main {
+            color: #212529; 
+        }
+        .navbar-brand {
+            font-weight: 600; 
+            font-size: 1.35rem;
+        }
+        .nav-link {
+            transition: all 0.3s ease; 
+            position: relative; 
+        }
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.85) !important; 
+            transform: translateY(-2px); 
+        }
+        .nav-item .nav-link.active {
+            font-weight: 600; 
+            color: #ffffff !important;
+        }
+        .nav-item .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; 
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px; 
+        }
+        .footer {
+            padding: 1.5rem 0; 
+            color: #ADB5BD; 
+        }
+        .footer a.text-white {
+            color: #ffffff !important;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">HRManager</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">HRManager</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index" aria-current="page">
+                                <i class="bi bi-house-door-fill me-2"></i>Inicio
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">
+                                <i class="bi bi-shield-fill me-2"></i>Privacidad
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Beneficios/Index">Beneficios</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Beneficios/Index">
+                                <i class="bi bi-gift-fill me-2"></i>Beneficios
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Cargos/Index">Cargos</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Cargos/Index">
+                                <i class="bi bi-briefcase-fill me-2"></i>Cargos
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Departamentos/Index">Departamentos</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Departamentos/Index">
+                                <i class="bi bi-building-fill me-2"></i>Departamentos
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Nominas/Index">Nominas</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Nominas/Index">
+                                <i class="bi bi-cash-stack me-2"></i>Nóminas
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Empleados/Index">Empleados</a>
-                        </li>
-                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Empleados/Index">
+                                <i class="bi bi-person-fill me-2"></i>Empleados
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="mr-2">
+                <div class="ms-auto">
                     <partial name="_loginStatusPartial" />
                 </div>
             </div>
@@ -56,17 +121,15 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark text-white py-4">
         <div class="container">
-            &copy; 2025 - HRManager - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - HRManager - <a asp-area="" asp-page="/Privacy" class="text-white">Privacidad</a>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
