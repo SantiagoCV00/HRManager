@@ -1,33 +1,45 @@
 ﻿@page
 @model HRManager.Pages.Departamentos.EditModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Departamento"; // Changed title for clarity
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="mb-0">Editar Departamento</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4" role="alert"></div>
+                        <input type="hidden" asp-for="Departamento.IdDepartamento" />
 
-<h4>Departamento</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Departamento.IdDepartamento" />
-            <div class="form-group">
-                <label asp-for="Departamento.NombreDepartamento" class="control-label"></label>
-                <input asp-for="Departamento.NombreDepartamento" class="form-control" />
-                <span asp-validation-for="Departamento.NombreDepartamento" class="text-danger"></span>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Departamento.NombreDepartamento" class="form-control" placeholder="Ingrese el nombre del departamento" />
+                            <label asp-for="Departamento.NombreDepartamento">Nombre del Departamento</label>
+                            <span asp-validation-for="Departamento.NombreDepartamento" class="text-danger mt-1"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="Departamento.Ubicacion" class="form-control" placeholder="Ingrese la ubicación del departamento" />
+                            <label asp-for="Departamento.Ubicacion">Ubicación</label>
+                            <span asp-validation-for="Departamento.Ubicacion" class="text-danger mt-1"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                Guardar
+                            </button>
+                            <a asp-page="Index" class="btn btn-secondary btn-lg">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Departamento.Ubicacion" class="control-label"></label>
-                <input asp-for="Departamento.Ubicacion" class="form-control" />
-                <span asp-validation-for="Departamento.Ubicacion" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3">
-                <input type="submit" value="Save" class="btn btn-success" />
-                <a asp-page="./Index" class="btn btn-primary">Back to List</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -35,4 +47,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 }
