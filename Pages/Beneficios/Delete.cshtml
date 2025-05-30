@@ -1,24 +1,53 @@
 ﻿@page
 @model HRManager.Pages.Beneficios.DeleteModel
 @{
-	ViewData["Title"] = "Eliminar Beneficio";
+    ViewData["Title"] = "Eliminar Beneficio";
 }
 
-<h1>Eliminar Beneficio</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-danger text-white text-center py-3">
+                    <h3 class="mb-0">Eliminar Beneficio</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-exclamation-triangle-fill text-danger display-4"></i>
+                        <h4 class="mt-3 text-danger">¿Estás seguro que deseas eliminar este beneficio?</h4>
+                        <p class="lead">Esta acción no se puede deshacer.</p>
+                    </div>
 
-<h3>¿Estás seguro que deseas eliminar este beneficio?</h3>
-<div>
-    <h4>@Model.Beneficio.Descripcion</h4>
-    <dl class="row">
-        <dt class="col-sm-2">Costo Empresa</dt>
-        <dd class="col-sm-10">@Model.Beneficio.CostoEmpresa</dd>
-        <dt class="col-sm-2">Costo Empleado</dt>
-        <dd class="col-sm-10">@Model.Beneficio.CostoEmpleado</dd>
-    </dl>
+                    <hr />
 
-    <form method="post">
-        <input type="hidden" asp-for="Beneficio.IdBeneficio" />
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
-    </form>
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4 text-end">Descripción:</dt>
+                        <dd class="col-sm-8"><strong>@Model.Beneficio.Descripcion</strong></dd>
+
+                        <dt class="col-sm-4 text-end">Costo para la empresa:</dt>
+                        <dd class="col-sm-8">@Model.Beneficio.CostoEmpresa.ToString("C")</dd>
+
+                        <dt class="col-sm-4 text-end">Costo para el empleado:</dt>
+                        <dd class="col-sm-8">@Model.Beneficio.CostoEmpleado.ToString("C")</dd>
+                    </dl>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Beneficio.IdBeneficio" />
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="bi bi-trash-fill me-2"></i>Eliminar
+                            </button>
+                            <a asp-page="Index" class="btn btn-secondary btn-lg">
+                                <i class="bi bi-x-circle me-2"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
