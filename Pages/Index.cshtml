@@ -1,10 +1,121 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio - HRManager";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 col-md-10">
+            <div class="p-5 text-center bg-light rounded-3 shadow-sm">
+                <h1 class="display-4 fw-bold text-primary mb-3">
+                   Bienvenido!
+                </h1>
+                <p class="lead text-muted mb-4">
+                    Tu solución integral para la gestión eficiente de recursos humanos.
+                    Simplifica la administración de empleados, nóminas, departamentos, cargos y beneficios.
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a asp-page="/Empleados/Index" class="btn btn-primary btn-lg px-4 gap-3" role="button" title="Ir a la gestión de empleados">
+                        <i class="bi bi-people-fill me-2"></i>Gestionar Empleados
+                    </a>
+                    <a asp-page="/Nominas/Index" class="btn btn-outline-secondary btn-lg px-4" role="button" title="Ir a la gestión de nóminas">
+                        <i class="bi bi-cash-stack me-2"></i>Gestionar Nóminas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4 text-secondary">Nuestras Funcionalidades Clave</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-person-lines-fill display-5 text-primary mb-3"></i>
+                    <h5 class="card-title fw-bold">Empleados</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Administra la información detallada de tus empleados, desde datos personales hasta contratos.
+                    </p>
+                    <a asp-page="/Empleados/Index" class="btn btn-sm btn-outline-primary mt-3">
+                        Ver Empleados <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-calculator-fill display-5 text-success mb-3"></i>
+                    <h5 class="card-title fw-bold">Nóminas</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Calcula y gestiona las nóminas de tu personal de manera eficiente y precisa.
+                    </p>
+                    <a asp-page="/Nominas/Index" class="btn btn-sm btn-outline-success mt-3">
+                        Ver Nóminas <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-building-fill display-5 text-info mb-3"></i>
+                    <h5 class="card-title fw-bold">Departamentos</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Organiza a tus empleados por departamentos para una estructura clara de tu empresa.
+                    </p>
+                    <a asp-page="/Departamentos/Index" class="btn btn-sm btn-outline-info mt-3">
+                        Ver Departamentos <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-award-fill display-5 text-warning mb-3"></i>
+                    <h5 class="card-title fw-bold">Cargos</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Define y asigna cargos dentro de tu organización con sus respectivas responsabilidades.
+                    </p>
+                    <a asp-page="/Cargos/Index" class="btn btn-sm btn-outline-warning mt-3">
+                        Ver Cargos <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-heart-fill display-5 text-danger mb-3"></i>
+                    <h5 class="card-title fw-bold">Beneficios</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Gestiona los beneficios y compensaciones adicionales ofrecidos a tus empleados.
+                    </p>
+                    <a asp-page="/Beneficios/Index" class="btn btn-sm btn-outline-danger mt-3">
+                        Ver Beneficios <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center d-flex flex-column align-items-center">
+                    <i class="bi bi-info-circle-fill display-5 text-secondary mb-3"></i>
+                    <h5 class="card-title fw-bold">Acerca de</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        Conoce más sobre este sistema de gestión y sus desarrolladores.
+                    </p>
+                    <a asp-page="/Privacy" class="btn btn-sm btn-outline-secondary mt-3">
+                        Ver Detalles <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+}
